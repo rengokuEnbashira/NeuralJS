@@ -1,3 +1,4 @@
+// Matrix Class
 function matrix(n_rows,n_cols){
     this.n_rows = n_rows;
     this.n_cols = n_cols;
@@ -130,8 +131,26 @@ function matrix(n_rows,n_cols){
 	}
 	return out;
     }
+    this.from_string = function(str){
+	var data = [];
+	str = str.replace(/ /g,"");
+	var lines = str.split("\n");
+	var arr;
+	for(var i in lines){
+	    arr = lines[i].split(",");
+	    var tmp = [];
+	    for(var j in arr)
+		tmp.push(parseFloat(arr[j]));
+	    data.push(tmp);
+	}
+	this.n_rows = data.length;
+	this.n_cols = data[0].length;
+	this.data = data;
+    }
 }
 
+
+// Activation Functions and their derivatives
 function sigmoid(x){
     return 1/(1 + Math.exp(-x));
 }
@@ -176,6 +195,7 @@ dict_act_fun = {"sigmoid":sigmoid,"tanh":tanh,"relu":relu,"leaky_relu":leaky_rel
 dict_diff_act_fun = {"sigmoid":diff_sigmoid,"tanh":diff_tanh,"relu":diff_relu,"leaky_relu":diff_leaky_relu,"linear":diff_linear};
 
 
+// Softmax function
 function softmax(x){
     var tmp = x.clone();
     tmp.eval(Math.exp);
@@ -183,6 +203,9 @@ function softmax(x){
     return tmp;
 }
 
+// Loss Functions
+// input: the output of the network and the target
+// output: loss value, gradient of loss 
 function mean_square_error(out,target){
     var out_loss = {};
     var tmp = out.clone();
@@ -210,6 +233,10 @@ function cross_entropy(out,target){
 
 dict_loss_func = {"mean_square_error":mean_square_error,"cross_entropy":cross_entropy};
 
+
+// Block class
+// The neural network would be a sequence of these blocks
+// Each block performs a linear transformation and applies to this output the specified activation function 
 function block(n_inp,n_out,act_fun){
     this.n_inp = n_inp;
     this.n_out = n_out;
@@ -243,8 +270,13 @@ function block(n_inp,n_out,act_fun){
     }
 }
 
+
+// Neural Network class
 function neural_network(){
     this.blocks = [];
+    this.clear = function(){
+	this.blocks = [];
+    }
     this.add = function(b){
 	this.blocks.push(b);
     }
@@ -277,6 +309,12 @@ function neural_network(){
     }
     this.predict = function(x){
 	return this.forward(x);
+    }
+    this.from_string = function(str){
+	var data = JSON.parse(str);
+	this.clear();
+	for(var layer in data)
+	    this.add(new block(parseInt(data[layer]["inp"]),parseInt(data[layer]["out"]),data[layer]["act_fun"]));
     }
 }
 

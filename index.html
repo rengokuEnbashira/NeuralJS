@@ -1,9 +1,53 @@
 <html>
   <head>
     <title>Neural Network</title>
+    <script src="neural.js"></script>
   </head>
-  <body>
+  <body >
+    <div id="data" style="float:left;width:100%;">
+      <div style="float:left;padding:20px;">
+	<h4>input data</h4>
+	<textarea id="input-data" rows=20 cols=25></textarea>
+      </div>
+      <div style="float:left;padding:20px;">
+	<h4>output data</h4>
+	<textarea id="output-data" rows=20 cols=25></textarea>
+      </div>
+    </div>
+    <div id="model-and-train" style="padding:20px;">
+      <div style="float:left;padding:20px;">
+	<h4>model</h4>
+	<textarea id="model-details" rows=20 cols=50></textarea>
+      </div>
+      <div style="float:left;padding:20px;">
+	<h4>train</h4>
+	<textarea id="train-details" rows=20 cols=50></textarea>
+      </div>
+    </div>
+    <button id="train_btn" onclick=train()>Train</button>
     <script>
+      function train(){
+	  var model = new neural_network();
+	  var model_detail = document.getElementById("model-details").value;
+	  model.from_string(model_detail);
+	  console.log(model);
+
+	  var inp_data = document.getElementById("input-data").value;
+	  var out_data = document.getElementById("output-data").value;
+	  var inp_set = new matrix();
+	  var out_set = new matrix();
+	  inp_set.from_string(inp_data);
+	  out_set.from_string(out_data);
+
+	  var train_detail = document.getElementById("train-details").value;
+	  var train = JSON.parse(train_detail);
+	  console.log(train);
+	  model.train(inp_set,out_set,train["loss"],train["maxIt"],train["learning_rate"]);
+
+	  var pred = model.predict(inp_set);
+	  console.log(pred);
+      }
+      //model.parse()
     </script>
   </body>
 </html>
