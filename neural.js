@@ -306,6 +306,7 @@ function neural_network(){
 	    this.backward(tmp["grad_loss"]);
 	    this.update(learning_rate);
 	}
+	return tmp["loss"];
     }
     this.predict = function(x){
 	return this.forward(x);

@@ -4,162 +4,280 @@
     <script src="neural.js"></script>
   </head>
   <body >
-    <div id="data" style="float:left;width:100%;">
+    <h1>Example of a Multilayer Perceptron</h1>
+    <div id="data" >
       <div style="float:left;padding:20px;">
 	<h4>input data</h4>
-	<textarea id="input-data" rows=20 cols=50>
--0.12225064041715727,-0.07197465644410794
--0.938139025424614,-1.5023542133368966
--0.33043418358843457,1.0821375516914946
-0.6079845631550613,0.4212114926564481
--0.23011148612192223,-1.1539569465115518
-1.1563226579452959,1.0455074708966836
-0.815531627663129,1.9293814189301108
--1.9130654234958753,-1.2363354345677169
--0.16833788195294908,-1.4060139966631509
-0.19723146407116543,-1.4732116673321776
-1.4408496321524673,-1.5000656711568312
-0.6208579524347155,-0.23919767980917817
--1.6499379877449272,0.1993905030923142
--0.4827792649846767,-1.3443772537056877
--1.834297106188704,-1.7067930017640687
-1.588410257613782,0.2578899554080105
--0.5757760500068629,0.062391702810254746
--1.6460314013848527,0.7689712161337074
--1.6531890482678957,-0.9733401705088021
-1.4016918889838137,-0.34620610664443596
-0.5737183127035062,1.7133220017584359
-1.0863736280982215,-1.171054814517031
--1.0554250455581302,-1.6441519938936202
-0.95464085854604,0.4303252282555139
-1.5070772641151011,-0.6193319908054105
-0.38407378412188864,1.2793359263357176
-1.7030862629569663,-1.4363039346184614
-0.9020535055438792,-1.0355859877134233
-1.8746655815113864,1.4042697602258838
--1.458909340999579,-1.3230612934939332
--1.2030012541868942,1.318492501749466
-0.1935585192721616,-1.5094154236302768
--0.6976924135251403,-0.7707200935394112
-0.6121595497217966,1.9185682612084682
--1.2321063846856046,-1.3554268636932432
-1.8205998602512254,-0.2862957822431147
-1.976610019057368,1.659215590180294
--1.3672087787877056,0.9738313369052829
--1.523296998539604,-1.8137757253099256
--0.016337900107519232,-1.9748980353992023
-0.3853432882566672,1.5974061009030835
-1.1791265195693494,1.777473831997996
--0.5833481224180197,-1.9771469960211383
-0.4499134250002905,-1.652433857220379
--1.8917869071205091,-1.759203002088869
-0.06337615066181579,-1.0333781931370383
-0.16088983465117268,0.9985102124615253
-1.3560969395717128,-1.883761127910459
-1.0909929473603515,1.1366050086531803
-1.327594014363557,1.8265925253472264</textarea>
+	<textarea id="input-data" rows=24 cols=40>
+-0.24785687935011902,0.34696453523761983
+1.388257519775168,1.635768128808964
+0.6838039826143119,1.9184256743984438
+0.381848998166054,1.3973828868494298
+-1.517150237630771,-0.6988611630786079
+-0.8593423233862563,0.9614845867628938
+-1.162385637966998,-0.737802005523795
+-1.6429902973526382,1.7636832191914977
+0.639550237782557,-0.2668898186426012
+-0.36130796995797265,-0.9174753749523861
+-1.5700274249237305,0.09097667632924633
+0.4028629066399607,-1.1871591408474496
+-1.965999609918081,1.7708489602869206
+-1.8620607741325763,0.2376274886625711
+0.5468326604887657,1.2868530914279637
+-0.8369717307942097,-0.5338721448400623
+-0.8331641986693219,-0.06562172859069593
+-0.059033937506518086,-1.3636393777130946
+-0.4492528472168722,0.3219444226311001
+1.3128174144191957,-1.9554167564431726
+-0.6752684157776341,1.0063962284384855
+-1.9132939883271813,-1.4585331919748974
+0.7864249281794886,-1.9055239487214228
+-0.6582566644938352,-1.5203494664031973
+1.8515700020987356,-0.7086630417317852
+-0.22962018500748593,0.23370892087771145
+1.7208400747285455,0.6908949236511055
+1.5924252566185886,1.2707810162789945
+1.492708437082277,-0.021546878216030407
+1.9797460659576784,1.947018199369054
+1.7751703426719305,1.3910246950300635
+-0.11456153327309071,0.34289899162210036
+-0.6871368651347338,-1.5644289008210754
+-1.3833662367831066,-1.8158506737143534
+-1.3522359539955997,0.28766830515979036
+-0.8849425508234994,0.38255274357984215
+1.4875561047754977,-0.825055658174874
+-1.4819540600024843,1.7552780130012788
+0.5572941112725709,-0.6280026756960058
+1.7562775455218937,1.8280774837410818
+0.06322731880976118,-1.14383308951377
+-0.03644529379818717,1.3114650690905645
+-0.8949606245574371,-0.7034899339753489
+-1.160377459220015,1.7688575474319763
+-0.1364740159566109,1.7082760500677003
+1.32595949599893,-1.779126108724816
+-0.5956196399776013,-0.6517028803917162
+-1.92911391829172,1.456087339524692
+-0.0804858560213817,-1.7059425564693447
+1.1741663798598792,0.9810619857914284</textarea>
       </div>
       <div style="float:left;padding:20px;">
 	<h4>output data</h4>
-	<textarea id="output-data" rows=20 cols=25>
-1.000000,0.000000
-1.000000,0.000000
-1.000000,0.000000
-1.000000,0.000000
-1.000000,0.000000
-1.000000,0.000000
-0.000000,1.000000
-0.000000,1.000000
-1.000000,0.000000
-1.000000,0.000000
-0.000000,1.000000
-1.000000,0.000000
-1.000000,0.000000
-1.000000,0.000000
-0.000000,1.000000
-1.000000,0.000000
-1.000000,0.000000
-1.000000,0.000000
-1.000000,0.000000
-1.000000,0.000000
-1.000000,0.000000
-1.000000,0.000000
-1.000000,0.000000
-1.000000,0.000000
-1.000000,0.000000
-1.000000,0.000000
-0.000000,1.000000
-1.000000,0.000000
-0.000000,1.000000
-1.000000,0.000000
-1.000000,0.000000
-1.000000,0.000000
-1.000000,0.000000
-0.000000,1.000000
-1.000000,0.000000
-1.000000,0.000000
-0.000000,1.000000
-1.000000,0.000000
-0.000000,1.000000
-1.000000,0.000000
-1.000000,0.000000
-0.000000,1.000000
-0.000000,1.000000
-1.000000,0.000000
-0.000000,1.000000
-1.000000,0.000000
-1.000000,0.000000
-0.000000,1.000000
-1.000000,0.000000
-0.000000,1.000000</textarea>
+	<textarea id="output-data" rows=24 cols=20>
+1.0,0.0
+0.0,1.0
+0.0,1.0
+1.0,0.0
+0.0,1.0
+1.0,0.0
+1.0,0.0
+0.0,1.0
+1.0,0.0
+1.0,0.0
+0.0,1.0
+1.0,0.0
+0.0,1.0
+0.0,1.0
+1.0,0.0
+1.0,0.0
+1.0,0.0
+1.0,0.0
+1.0,0.0
+0.0,1.0
+1.0,0.0
+0.0,1.0
+0.0,1.0
+0.0,1.0
+0.0,1.0
+1.0,0.0
+0.0,1.0
+0.0,1.0
+1.0,0.0
+0.0,1.0
+0.0,1.0
+1.0,0.0
+0.0,1.0
+0.0,1.0
+1.0,0.0
+1.0,0.0
+0.0,1.0
+0.0,1.0
+1.0,0.0
+0.0,1.0
+1.0,0.0
+1.0,0.0
+1.0,0.0
+0.0,1.0
+0.0,1.0
+0.0,1.0
+1.0,0.0
+0.0,1.0
+0.0,1.0
+0.0,1.0</textarea>
       </div>
     </div>
     <div id="model-and-train" style="padding:20px;">
-      <div style="float:left;padding:20px;">
+      <div >
 	<h4>model</h4>
-	<textarea id="model-details" rows=20 cols=50>
+	<textarea id="model-details" rows=10 cols=50>
 {
-"layer1":{"inp":2,"out":5,"act_fun":"sigmoid"},
-"layer2":{"inp":5,"out":2,"act_fun":"sigmoid"}
-}
-	</textarea>
+"layer1":{"inp":2,"out":5,"act_fun":"relu"},
+"layer2":{"inp":5,"out":2,"act_fun":"linear"}
+}</textarea>
       </div>
-      <div style="float:left;padding:20px;">
+      <div>
 	<h4>train</h4>
-	<textarea id="train-details" rows=20 cols=50>
+	<textarea id="train-details" rows=10 cols=50>
 {
 "loss" : "cross_entropy",
-"maxIt": 1000,
-"learning_rate" : 1
-}
-	</textarea>
+"maxIt": 100,
+"learning_rate" : 0.01
+}</textarea>
       </div>
     </div>
-    <button id="train_btn" onclick=train()>Train</button>
+    <div style="padding:20px;">
+      <button id="train_btn" onclick=load_data_and_train()>Train</button>
+    </div>
+    <div>
+      <canvas style="border:solid 1px"width=500 height=500 id="loss-graph"></canvas>
+      <canvas style="border:solid 1px"width=500 height=500 id="points-graph"></canvas>
+    </div>
     <script>
-      function train(){
-	  var model = new neural_network();
+
+      var ctx_loss = document.getElementById("loss-graph").getContext("2d");
+      var ctx_points = document.getElementById("points-graph").getContext("2d");
+
+      var WIDTH = 500;
+      var HEIGHT = 500;
+      
+      var loss_data = [];
+      var count = 0;
+      var loss_x = [];
+      
+      var N = 50;
+      var h = 4/N;
+      var points = new matrix(N*N,2);
+      for(var i = 0;i<N;i++){
+	  for(var j=0;j<N;j++){
+	      points.data[i*N + j][0] = -2 + i*h;
+	      points.data[i*N + j][1] = -2 + j*h;
+	  }
+      }
+      
+      var model;
+      var inp_set;
+      var out_set;
+      var train_data;
+      var pred;
+      
+      function map(x,a,b,p,q){
+	  return p + (x-a)*(q-p)/(b-a); 
+      }
+      
+      function load_data_and_train(){
+	  // Creating model and parsing it from text
+	  model = new neural_network();
 	  var model_detail = document.getElementById("model-details").value;
 	  model.from_string(model_detail);
-	  console.log(model);
+	  //console.log(model);
 
+	  // Parsing input and output data from text
 	  var inp_data = document.getElementById("input-data").value;
 	  var out_data = document.getElementById("output-data").value;
-	  var inp_set = new matrix();
-	  var out_set = new matrix();
+	  inp_set = new matrix();
+	  out_set = new matrix();
 	  inp_set.from_string(inp_data);
 	  out_set.from_string(out_data);
-	  console.log(inp_set);
-	  console.log(out_set);
-	  
-	  var train_detail = document.getElementById("train-details").value;
-	  var train = JSON.parse(train_detail);
-	  console.log(train);
-	  model.train(inp_set,out_set,train["loss"],train["maxIt"],train["learning_rate"]);
+	  //console.log(inp_set);
+	  //console.log(out_set);
 
-	  var pred = model.predict(inp_set);
-	  console.log(pred);
+	  // Training model
+	  var train_detail = document.getElementById("train-details").value;
+	  train_data = JSON.parse(train_detail);
+	  //console.log(train_data);
+	  //model.train(inp_set,out_set,train_data["loss"],train_data["maxIt"],train_data["learning_rate"]);
+
+	  // Predict
+	  //pred = model.predict(inp_set);
+	  //console.log(pred);
+	  setInterval(train,100);
       }
+      
+      function train(){
+	  if(train_data["maxIt"]>0){
+	      count += 1;
+	      loss_x.push(count);
+	      loss_data.push(model.train(inp_set,out_set,train_data["loss"],1,train_data["learning_rate"]));
+	      train_data["maxIt"] -= 1;
+	      clear(ctx_loss);
+	      clear(ctx_points);
+	      draw_loss();
+	      draw_areas();
+	      draw_points();
+	  }
+      }
+
+      function clear(ctx){
+	  ctx.fillStyle = "#FFFFFF";
+	  ctx.rect(0,0,WIDTH,HEIGHT);
+	  ctx.fill();
+      }
+      
+      function draw_loss(){
+	  ctx_loss.save();
+	  var i = 0;
+	  var x,y;
+	  x = map(loss_x[i],0,100,0,WIDTH);
+	  y = map(loss_data[i],0,1,HEIGHT,0);
+	  ctx_loss.beginPath();
+	  ctx_loss.strokeStyle = "#0000FF";
+	  ctx_loss.moveTo(x,y);
+	  for(i = 1;i<loss_data.length;i++){
+	      x = map(loss_x[i],0,100,0,WIDTH);
+	      y = map(loss_data[i],0,5,HEIGHT,0);
+	      ctx_loss.lineTo(x,y);
+	      ctx_loss.stroke();
+	  }
+	  ctx_loss.closePath();
+	  ctx_loss.restore();
+      }
+
+      function get_color_point(clf){
+	  return clf[1]>clf[0]?"#FF0000":"#00FF00";
+      }
+
+      function get_color_area(clf){
+	  return clf[1]>clf[0]?"#AA0000":"#00AA00";
+      }
+      function draw_areas(){
+	  pred = model.predict(points);
+	  ctx_points.save();
+	  for(var i = 0;i<N;i++){
+	      for(var j = 0;j<N;j++){
+		  ctx_points.beginPath();
+		  ctx_points.fillStyle = get_color_area(pred.data[i*N + j]);
+		  ctx_points.rect(10*i,10*(49 - j),10,10);
+		  ctx_points.fill();
+		  ctx_points.closePath();
+	      }
+	  }
+	  ctx_points.restore();
+      }
+      function draw_points(){
+	  ctx_points.save();
+	  var x,y,color;
+	  for(var i = 0;i<inp_set.n_rows;i++){
+	      x = map(inp_set.data[i][0],-2,2,0,WIDTH);
+	      y = map(inp_set.data[i][1],-2,2,HEIGHT,0);
+	      ctx_points.beginPath();
+	      ctx_points.fillStyle  = get_color_point(out_set.data[i]);
+	      ctx_points.ellipse(x,y,10,10,0,0,2*Math.PI);
+	      ctx_points.fill();
+	      ctx_points.closePath();
+	  }
+	  ctx_points.restore();
+      }
+
+      
     </script>
   </body>
 </html>

@@ -30,3 +30,11 @@ We can choose from the following loss functions:
 * mean_square_error
 * cross_entropy
 
+You can see an example (classification) of the code working by opening index.html. You can just opening it from your browser or you can execute the following command from the directory, 
+```
+python3 -m http.server
+```
+and then go to the following link
+```
+localhost:8000
+```
